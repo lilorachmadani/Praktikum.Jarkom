@@ -1,6 +1,6 @@
 # Laporan Praktikum Jarkom Modul 3
 
-## Basic HTTP GET
+# Basic HTTP GET
 Proses ini bertujuan untuk mengamati mekanisme komunikasi antara client (browser) dan server yang berlangsung melalui metode HTTP GET serta respons HTTP (HTTP Response).
 ## Langkah-Langkah
 1.Buka aplikasi wireshark
