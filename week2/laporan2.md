@@ -14,7 +14,7 @@ Proses ini bertujuan untuk mengamati mekanisme komunikasi antara client (browser
 5.Stop capture dan pada paket yang di pilih akan muncul rincian paket
 ![Lampiran](../assets/image/HTTP%20GET%20(4).png)
 
-## WEB Not Found
+# WEB Not Found
 Pada percobaan ini, dilakukan pengujian sederhana untuk mengetahui bagaimana proses pencarian ketika menggunakan alamat web yang bersifat acak, namun tetap memanfaatkan protokol HTTP sebagai media aksesnya.
 ## Langkah-Langkah
 1.Buka aplikasi wireshark, lalu pilih menu wifi
@@ -26,19 +26,19 @@ Pada percobaan ini, dilakukan pengujian sederhana untuk mengetahui bagaimana pro
 4.Stop capture dan pada paket yang di pilih akan muncul keterangan 404 atau eror
 ![Lampiran](../assets/image/Not%20Found.png)
 
-## Retrieving Long Documents
+# Retrieving Long Documents
 pembahasan difokuskan pada proses Retrieving Long Document, yaitu proses pengambilan data berukuran besar seperti file, halaman web, atau dokumen panjang. Data tersebut diperoleh dari hasil penangkapan (capture) paket jaringan yang ditransmisikan melalui berbagai protokol komunikasi, seperti HTTP, TCP, maupun FTP.
 ## Langkah-Langkah
 1.Buka aplikasi wireshark, lalu pilih menu wifi
 ![Lampiran](../assets/image/HTTP%20GET%20(2).png)
 2.Selanjutnya buka chrome dan jalankan browser http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file3.html
 ![Lampiran](../assets/image/Retrieving%20Long%20Documents%20(1).png)
-3.etelah itu kembali ke aplikasi wireshark dan gunakan fitur filter dan ketik http
+3.Setelah itu kembali ke aplikasi wireshark dan gunakan fitur filter dan ketik http
 ![Lampiran](../assets/image/gambar%20wireshark%20(4).png)
 4.Stop capture dan pada paket yang di pilih akan muncul rincian paket
 ![Lampiran](../assets/image/Retrieving%20Long%20Documents%20(3).png)
 
-## HTML Documents Dengan Embedded Objects
+# HTML Documents Dengan Embedded Objects
 Pembahasan mengenai HTML Documents with Embedded Objects, yaitu dokumen HTML yang memuat objek tambahan seperti gambar, CSS, JavaScript, maupun file lainnya. Keberadaan objek-objek tersebut menyebabkan browser mengirimkan beberapa permintaan (request) HTTP saat halaman dibuka, yang selanjutnya dapat diamati melalui proses capture menggunakan Wireshark.
 ## Langkah-Langkah
 1.Buka aplikasi wireshark, lalu pilih menu wifi
@@ -50,7 +50,7 @@ Pembahasan mengenai HTML Documents with Embedded Objects, yaitu dokumen HTML yan
 4.Stop capture dan pada paket yang di pilih akan muncul rincian terlihat tulisan jpeg dikarenakan pada link tersebut saat di search terdapat gambar jadi pada wireshark menampilkan data atau mendeteksi pada web tersebut terdapat gambar
 ![Lampiran](../assets/image/Retrieving%20Long%20Documents%20(3).png)
 
-## HTTP Authentication
+# HTTP Authentication
 Pembahasan mengenai HTTP Authentication, yaitu proses autentikasi (login) yang terjadi ketika klien mengakses sebuah website yang memerlukan username dan password. Proses ini melibatkan pertukaran data melalui protokol HTTP, yang dapat diamati pada paket jaringan hasil capture menggunakan Wireshark.
 ## Langkah-Langkah
 1.Buka aplikasi wireshark, lalu pilih menu wifi
