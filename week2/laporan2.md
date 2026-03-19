@@ -57,8 +57,10 @@ Pembahasan mengenai HTTP Authentication, yaitu proses autentikasi (login) yang t
 ![Lampiran](../assets/image/HTTP%20GET%20(2).png)
 2.Selanjutnya buka chrome dan jalankan browser http://gaia.cs.umass.edu/wireshark-labs/protected_pages/HTTP-wireshark-file5.html
 ![Lampiran](../assets/image/HTTP%20Authentication%20(1).png)
+
 3.Masukkan username:wireshark-students dan password:network lalu tekan enter
 ![Lampiran](../assets/image/HTTP%20Authentication%20(2).png)
+
 4.Jika sudah browser akan menampilkan seperti ini
 ![Lampiran](../assets/image/HTTP%20Authentication%20(3).png)
 5.Setelah itu kembali ke aplikasi wireshark dan gunakan fitur filter dan ketik http
