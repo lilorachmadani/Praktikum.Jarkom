@@ -33,7 +33,7 @@ pembahasan difokuskan pada proses Retrieving Long Document, yaitu proses pengamb
 ![Lampiran](../assets/image/HTTP%20GET%20(2).png)
 2.Selanjutnya buka chrome dan jalankan browser http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file3.html
 ![Lampiran](../assets/image/Retrieving%20Long%20Documents%20(1).png)
-3.etelah itu kembali ke aplikasi wireshark dan gunakan fitur filter dan ketik http
+3.Setelah itu kembali ke aplikasi wireshark dan gunakan fitur filter dan ketik http
 ![Lampiran](../assets/image/gambar%20wireshark%20(4).png)
 4.Stop capture dan pada paket yang di pilih akan muncul rincian paket
 ![Lampiran](../assets/image/Retrieving%20Long%20Documents%20(3).png)
@@ -57,8 +57,11 @@ Pembahasan mengenai HTTP Authentication, yaitu proses autentikasi (login) yang t
 ![Lampiran](../assets/image/HTTP%20GET%20(2).png)
 2.Selanjutnya buka chrome dan jalankan browser http://gaia.cs.umass.edu/wireshark-labs/protected_pages/HTTP-wireshark-file5.html
 ![Lampiran](../assets/image/HTTP%20Authentication%20(1).png)
+
 3.Masukkan username:wireshark-students dan password:network lalu tekan enter
+
 ![Lampiran](../assets/image/HTTP%20Authentication%20(2).png)
+
 4.Jika sudah browser akan menampilkan seperti ini
 ![Lampiran](../assets/image/HTTP%20Authentication%20(3).png)
 5.Setelah itu kembali ke aplikasi wireshark dan gunakan fitur filter dan ketik http
