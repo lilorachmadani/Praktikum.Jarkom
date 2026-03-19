@@ -59,6 +59,7 @@ Pembahasan mengenai HTTP Authentication, yaitu proses autentikasi (login) yang t
 ![Lampiran](../assets/image/HTTP%20Authentication%20(1).png)
 
 3.Masukkan username:wireshark-students dan password:network lalu tekan enter
+
 ![Lampiran](../assets/image/HTTP%20Authentication%20(2).png)
 
 4.Jika sudah browser akan menampilkan seperti ini
