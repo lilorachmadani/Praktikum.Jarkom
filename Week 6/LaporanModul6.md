@@ -45,7 +45,8 @@ Sesudah seluruh data berhasil diterima, server mengirimkan pesan balasan berupa 
 2. Server **gaia.cs.umass.edu** teridentifikasi memiliki alamat IP **128.119.245.12**. Selama proses transfer file, server memanfaatkan **port 80** yang merupakan port standar untuk layanan HTTP dalam menerima maupun mengirimkan segmen TCP.
 <img width="1265" height="640" alt="image" src="https://github.com/user-attachments/assets/8eea2d55-4b64-428e-a05b-be6db1789c24" />
 
-3. Dari paket yang berhasil ditangkap, diketahui bahwa komputer klien menggunakan alamat IP **10.225.197.205** dengan nomor port **56333** sebagai identitas koneksi TCP. Kombinasi alamat IP dan port tersebut digunakan untuk melakukan komunikasi serta mengirimkan data ke server **gaia.cs.umass.edu**.
+3. Dari paket yang berhasil ditangkap, diketahui bahwa komputer klien menggunakan alamat IP **127.0.2.2** dengan nomor port **56333** sebagai identitas koneksi TCP. Kombinasi alamat IP dan port tersebut digunakan untuk melakukan komunikasi serta mengirimkan data ke server **gaia.cs.umass.edu**.
+<img width="601" height="217" alt="image" src="https://github.com/user-attachments/assets/e4dd1c4b-422c-4fed-a241-ae9376e7d432" />
 
 ## 6.4 Dasar TCP
 
