@@ -63,28 +63,37 @@ Sesudah seluruh data berhasil diterima, server mengirimkan pesan balasan berupa 
 
 ## Jawaban
 1. Dari hasil analisis paket pada Wireshark, segmen pertama yang digunakan untuk memulai koneksi TCP memiliki **Sequence Number (Seq) = 0**. Segmen tersebut dapat dikenali sebagai paket SYN karena pada kolom informasi terdapat keterangan **[SYN]**, yang menandakan bahwa flag SYN aktif dan digunakan sebagai langkah awal pembentukan koneksi antara client dan server.
+<img width="1212" height="148" alt="image" src="https://github.com/user-attachments/assets/3cdb3486-aca1-4be6-9019-3304bdd0c288" />
 
 2. Pada paket balasan dari server yang bertipe **SYN-ACK**, terlihat bahwa **Sequence Number bernilai 0** dan **Acknowledgement Number bernilai 1**. Nilai ACK tersebut menunjukkan bahwa server telah menerima segmen SYN dari client dan mengakui nomor urut berikutnya yang diharapkan. Paket ini dapat diidentifikasi melalui flag **[SYN, ACK]** yang aktif secara bersamaan sebagai bagian dari proses three-way handshake.
+<img width="1223" height="617" alt="image" src="https://github.com/user-attachments/assets/2d6663a7-758b-4efc-a479-cf31e7ed504f" />
 
 3. Segmen TCP yang membawa permintaan **HTTP POST** memiliki **Sequence Number sebesar 1**. Paket ini ditemukan pada frame ke-4 dan dapat dikenali dari adanya perintah **"POST /ethereal-labs/lab3-1-reply.htm HTTP/1.1"** pada bagian payload. Selain itu, keberadaan flag **[PSH, ACK]** dan ukuran data sebesar **565 byte** menunjukkan bahwa paket tersebut berisi data aplikasi yang dikirim menuju server.
+<img width="1218" height="632" alt="image" src="https://github.com/user-attachments/assets/2325c909-e5d7-49c2-9c3d-dcd589ebd16c" />
 
 4. Berdasarkan grafik **Round Trip Time (RTT)** yang ditampilkan Wireshark, enam segmen pertama menunjukkan nilai RTT yang berubah-ubah pada rentang sekitar **30 ms hingga 180 ms**. Nilai RTT diperoleh dari titik-titik awal pada grafik pengamatan. Variasi tersebut menunjukkan bahwa waktu tempuh paket di jaringan tidak selalu konstan karena dipengaruhi oleh kondisi lalu lintas jaringan. Sementara itu, nilai **Estimated RTT** dihitung menggunakan metode **Exponential Weighted Moving Average (EWMA)** dengan parameter α = 0,125 sehingga menghasilkan nilai yang lebih stabil dibandingkan RTT aktual.
+<img width="1220" height="597" alt="image" src="https://github.com/user-attachments/assets/59a64cf4-0f8b-457f-9dd2-4f3c433fce81" />
 
 5. Jika dijumlahkan, ukuran data dari enam segmen TCP pertama mencapai **7.865 byte**. Nilai tersebut diperoleh dari akumulasi panjang data yang dikirim pada keenam segmen awal selama proses transfer berlangsung.
+<img width="1231" height="262" alt="image" src="https://github.com/user-attachments/assets/a7140ebf-bc1b-44de-9a1b-2bb437f9a012" />
 
 6. Hasil pengamatan menunjukkan bahwa sisi penerima masih memiliki **ruang buffer sebesar 17.520 byte**. Kapasitas ini cukup untuk menampung data yang masuk tanpa menyebabkan hambatan pada proses komunikasi. Tidak ditemukan nilai **Window Size = 0**, sehingga dapat disimpulkan bahwa buffer penerima tidak pernah berada dalam kondisi penuh selama pengiriman data berlangsung.
+<img width="690" height="186" alt="image" src="https://github.com/user-attachments/assets/ebb3fe84-7565-4c3c-876f-96f125ce66d9" />
 
 7. Selama proses transfer berlangsung, tidak ditemukan adanya paket TCP yang mengalami **retransmission**. Kondisi ini mengindikasikan bahwa seluruh paket berhasil diterima dengan baik oleh penerima tanpa kehilangan data yang mengharuskan pengiriman ulang.
+<img width="1257" height="475" alt="image" src="https://github.com/user-attachments/assets/2b6a008b-43c3-4311-bb67-8a87c799d2d5" />
 
 8. Jumlah byte yang diakui oleh paket **ACK** tidak selalu memiliki nilai yang sama. Dalam mekanisme TCP, satu ACK dapat mengonfirmasi penerimaan beberapa segmen sekaligus, sehingga jumlah data yang diakui bergantung pada kondisi penerimaan paket dan strategi pengiriman yang digunakan.
+<img width="1222" height="608" alt="image" src="https://github.com/user-attachments/assets/12151a88-7d25-49f3-92bc-62bf7bfc4171" />
 
 9. Dari grafik throughput yang diamati, kecepatan transfer TCP cenderung stabil pada kisaran **200–250 kbps**. Jika dikonversi ke satuan byte, nilainya berada di sekitar **25–31 KB/s**. Nilai tersebut diperoleh dengan memperhatikan garis rata-rata throughput pada grafik dan kemudian mengubah satuan kilobit per detik menjadi kilobyte per detik melalui proses konversi.
+<img width="1216" height="622" alt="image" src="https://github.com/user-attachments/assets/d3e46b9b-ff41-4098-9317-94d9355dd1e3" />
 
 ## 6.5 Congestion Control pada TCP
 
 **Congestion Control** merupakan mekanisme pada TCP yang berfungsi untuk mengatur jumlah data yang dikirim ke jaringan agar tidak menimbulkan kemacetan. Tujuan utama mekanisme ini adalah menjaga kestabilan jaringan, mengurangi risiko terjadinya kehilangan paket, serta memastikan setiap pengguna memperoleh kesempatan yang adil dalam memanfaatkan bandwidth yang tersedia. Untuk mengendalikan laju pengiriman data, TCP menggunakan parameter **Congestion Window (CWND)** yang nilainya akan berubah sesuai kondisi jaringan. Jika terdeteksi adanya indikasi kemacetan, seperti packet loss atau timeout, TCP akan menyesuaikan ukuran jendela pengiriman sehingga beban jaringan dapat dikurangi.
 
-## Langkah-Langkah dan Analisis
+## Langkah-Langkah dan Pertanyaan
 
 ### 1. Mengidentifikasi Fase Slow Start dan Congestion Avoidance
 
@@ -94,14 +103,11 @@ Sesudah seluruh data berhasil diterima, server mengirimkan pesan balasan berupa 
 2. Masukkan filter **tcp** pada kolom pencarian agar hanya paket TCP yang ditampilkan.
 3. Pilih menu **Statistics → TCP Stream Graph → Time-Sequence Graph (Stevens)**.
 4. Amati pola grafik yang dihasilkan.
+<img width="1253" height="642" alt="image" src="https://github.com/user-attachments/assets/b5c6ddc5-8448-4540-950c-c5006440c7a8" />
 
 **Hasil Analisis:**
 
-Berdasarkan grafik Time-Sequence yang diperoleh, fase **slow start** terlihat pada awal proses komunikasi, yaitu sejak pengiriman data dimulai hingga sekitar 0,5 detik pertama. Pada periode ini, pertambahan sequence number meningkat dengan cepat yang menunjukkan bahwa ukuran congestion window terus bertambah.
-
-Setelah melewati fase tersebut, pola pertumbuhan sequence number berubah menjadi lebih teratur dan mendekati garis lurus. Kondisi ini menandakan bahwa TCP telah memasuki fase **congestion avoidance**, yaitu tahap di mana peningkatan laju pengiriman dilakukan secara lebih hati-hati untuk menghindari kemacetan jaringan.
-
-Jika dibandingkan dengan model TCP yang ideal, grafik hasil pengamatan tidak menunjukkan pola eksponensial yang sempurna pada fase slow start. Bentuk grafik yang menyerupai tangga (*staircase pattern*) mengindikasikan adanya pengaruh kondisi jaringan nyata, seperti variasi waktu tempuh paket (RTT), keterlambatan ACK, serta faktor-faktor lain yang memengaruhi proses transmisi data.
+Berdasarkan grafik Time-Sequence yang diperoleh, fase **slow start** terlihat pada awal proses komunikasi, yaitu sejak pengiriman data dimulai hingga sekitar 0,5 detik pertama. Pada periode ini, pertambahan sequence number meningkat dengan cepat yang menunjukkan bahwa ukuran congestion window terus bertambah.Setelah melewati fase tersebut, pola pertumbuhan sequence number berubah menjadi lebih teratur dan mendekati garis lurus. Kondisi ini menandakan bahwa TCP telah memasuki fase **congestion avoidance**, yaitu tahap di mana peningkatan laju pengiriman dilakukan secara lebih hati-hati untuk menghindari kemacetan jaringan.Jika dibandingkan dengan model TCP yang ideal, grafik hasil pengamatan tidak menunjukkan pola eksponensial yang sempurna pada fase slow start. Bentuk grafik yang menyerupai tangga (*staircase pattern*) mengindikasikan adanya pengaruh kondisi jaringan nyata, seperti variasi waktu tempuh paket (RTT), keterlambatan ACK, serta faktor-faktor lain yang memengaruhi proses transmisi data.
 
 ### 2. Mengidentifikasi Fase Slow Start dan Congestion Avoidance pada Transfer File alice.txt
 
@@ -112,11 +118,8 @@ Jika dibandingkan dengan model TCP yang ideal, grafik hasil pengamatan tidak men
 3. Unggah file **alice.txt** ke halaman tersebut.
 4. Setelah proses upload selesai, kembali ke Wireshark dan gunakan filter **tcp**.
 5. Pilih menu **Statistics → TCP Stream Graph → Time-Sequence Graph (Stevens)** untuk melihat pola pengiriman data.
+<img width="1253" height="647" alt="image" src="https://github.com/user-attachments/assets/fea6f0e5-5487-4e55-a65e-aecc2610ec6a" />
 
 **Hasil Analisis:**
 
-Pada percobaan ini, fase **slow start** tidak terlihat secara jelas seperti yang dijelaskan dalam teori TCP. Sejak awal pengamatan, kenaikan sequence number cenderung berlangsung secara bertahap tanpa menunjukkan peningkatan yang sangat cepat. Grafik yang muncul lebih banyak memperlihatkan pola bertingkat dengan jarak waktu antar pengiriman yang relatif besar.
-
-Dari hasil tersebut dapat disimpulkan bahwa koneksi TCP lebih sering berada pada kondisi **congestion avoidance** atau dipengaruhi oleh faktor eksternal yang membatasi laju pengiriman data. Beberapa faktor yang dapat menyebabkan kondisi tersebut antara lain keterbatasan aplikasi dalam mengirim data, tingginya latency jaringan, karakteristik koneksi Wi-Fi, serta mekanisme flow control yang diterapkan selama komunikasi berlangsung.
-
-Apabila dibandingkan dengan karakteristik TCP ideal, hasil pengamatan menunjukkan adanya perbedaan yang cukup signifikan karena tidak terlihat fase pertumbuhan yang sangat cepat pada awal transmisi. Selain itu, jeda yang muncul antar segmen data menunjukkan bahwa performa jaringan dan aplikasi turut memengaruhi pola pengiriman data yang diamati.
+Pada percobaan ini, fase **slow start** tidak terlihat secara jelas seperti yang dijelaskan dalam teori TCP. Sejak awal pengamatan, kenaikan sequence number cenderung berlangsung secara bertahap tanpa menunjukkan peningkatan yang sangat cepat. Grafik yang muncul lebih banyak memperlihatkan pola bertingkat dengan jarak waktu antar pengiriman yang relatif besar.Dari hasil tersebut dapat disimpulkan bahwa koneksi TCP lebih sering berada pada kondisi **congestion avoidance** atau dipengaruhi oleh faktor eksternal yang membatasi laju pengiriman data. Beberapa faktor yang dapat menyebabkan kondisi tersebut antara lain keterbatasan aplikasi dalam mengirim data, tingginya latency jaringan, karakteristik koneksi Wi-Fi, serta mekanisme flow control yang diterapkan selama komunikasi berlangsung.Apabila dibandingkan dengan karakteristik TCP ideal, hasil pengamatan menunjukkan adanya perbedaan yang cukup signifikan karena tidak terlihat fase pertumbuhan yang sangat cepat pada awal transmisi. Selain itu, jeda yang muncul antar segmen data menunjukkan bahwa performa jaringan dan aplikasi turut memengaruhi pola pengiriman data yang diamati.
