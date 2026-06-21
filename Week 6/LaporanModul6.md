@@ -8,6 +8,7 @@ Analisis transfer data TCP dilakukan untuk memahami bagaimana data berpindah dar
 1. Mengunduh File yang Akan Dikirim
 
 Pertama, akses alamat http://gaia.cs.umass.edu/wireshark-labs/alice.txt melalui browser. Setelah halaman terbuka, simpan file tersebut ke komputer dengan cara klik kanan pada halaman lalu pilih menu Save As.
+<img width="1917" height="971" alt="image" src="https://github.com/user-attachments/assets/66de039a-00b6-4bc7-90e7-bd1b88a7c1a8" />
 
 2. Membuka Halaman Upload
 
