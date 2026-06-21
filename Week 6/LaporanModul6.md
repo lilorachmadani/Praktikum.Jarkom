@@ -35,14 +35,11 @@ Sesudah seluruh data berhasil diterima, server mengirimkan pesan balasan berupa 
 
 ## Jawaban
 
-## 1.
-Berdasarkan hasil pengamatan pada Wireshark, perangkat klien yang digunakan dalam proses pengiriman file memiliki alamat IP **10.225.197.205**. Pada saat komunikasi berlangsung, koneksi TCP menggunakan nomor port sumber **56333** untuk berinteraksi dengan server tujuan.
+1. Berdasarkan hasil pengamatan pada Wireshark, perangkat klien yang digunakan dalam proses pengiriman file memiliki alamat IP **10.225.197.205**. Pada saat komunikasi berlangsung, koneksi TCP menggunakan nomor port sumber **56333** untuk berinteraksi dengan server tujuan.
 
-## 2.
-Server **gaia.cs.umass.edu** teridentifikasi memiliki alamat IP **128.119.245.12**. Selama proses transfer file, server memanfaatkan **port 80** yang merupakan port standar untuk layanan HTTP dalam menerima maupun mengirimkan segmen TCP.
+2. Server **gaia.cs.umass.edu** teridentifikasi memiliki alamat IP **128.119.245.12**. Selama proses transfer file, server memanfaatkan **port 80** yang merupakan port standar untuk layanan HTTP dalam menerima maupun mengirimkan segmen TCP.
 
-## 3.
-Dari paket yang berhasil ditangkap, diketahui bahwa komputer klien menggunakan alamat IP **10.225.197.205** dengan nomor port **56333** sebagai identitas koneksi TCP. Kombinasi alamat IP dan port tersebut digunakan untuk melakukan komunikasi serta mengirimkan data ke server **gaia.cs.umass.edu**.
+3. Dari paket yang berhasil ditangkap, diketahui bahwa komputer klien menggunakan alamat IP **10.225.197.205** dengan nomor port **56333** sebagai identitas koneksi TCP. Kombinasi alamat IP dan port tersebut digunakan untuk melakukan komunikasi serta mengirimkan data ke server **gaia.cs.umass.edu**.
 
 ## 6.4 Dasar TCP
 
@@ -59,33 +56,23 @@ Dari paket yang berhasil ditangkap, diketahui bahwa komputer klien menggunakan a
 9. Berapa throughput (byte yang ditransfer per satuan waktu) untuk sambungan TCP? Jelaskan bagaimana Anda menghitung nilai ini.
 
 ## Jawaban
+1. Dari hasil analisis paket pada Wireshark, segmen pertama yang digunakan untuk memulai koneksi TCP memiliki **Sequence Number (Seq) = 0**. Segmen tersebut dapat dikenali sebagai paket SYN karena pada kolom informasi terdapat keterangan **[SYN]**, yang menandakan bahwa flag SYN aktif dan digunakan sebagai langkah awal pembentukan koneksi antara client dan server.
 
-### 1.
-Dari hasil analisis paket pada Wireshark, segmen pertama yang digunakan untuk memulai koneksi TCP memiliki **Sequence Number (Seq) = 0**. Segmen tersebut dapat dikenali sebagai paket SYN karena pada kolom informasi terdapat keterangan **[SYN]**, yang menandakan bahwa flag SYN aktif dan digunakan sebagai langkah awal pembentukan koneksi antara client dan server.
+2. Pada paket balasan dari server yang bertipe **SYN-ACK**, terlihat bahwa **Sequence Number bernilai 0** dan **Acknowledgement Number bernilai 1**. Nilai ACK tersebut menunjukkan bahwa server telah menerima segmen SYN dari client dan mengakui nomor urut berikutnya yang diharapkan. Paket ini dapat diidentifikasi melalui flag **[SYN, ACK]** yang aktif secara bersamaan sebagai bagian dari proses three-way handshake.
 
-### 2.
-Pada paket balasan dari server yang bertipe **SYN-ACK**, terlihat bahwa **Sequence Number bernilai 0** dan **Acknowledgement Number bernilai 1**. Nilai ACK tersebut menunjukkan bahwa server telah menerima segmen SYN dari client dan mengakui nomor urut berikutnya yang diharapkan. Paket ini dapat diidentifikasi melalui flag **[SYN, ACK]** yang aktif secara bersamaan sebagai bagian dari proses three-way handshake.
+3. Segmen TCP yang membawa permintaan **HTTP POST** memiliki **Sequence Number sebesar 1**. Paket ini ditemukan pada frame ke-4 dan dapat dikenali dari adanya perintah **"POST /ethereal-labs/lab3-1-reply.htm HTTP/1.1"** pada bagian payload. Selain itu, keberadaan flag **[PSH, ACK]** dan ukuran data sebesar **565 byte** menunjukkan bahwa paket tersebut berisi data aplikasi yang dikirim menuju server.
 
-### 3.
-Segmen TCP yang membawa permintaan **HTTP POST** memiliki **Sequence Number sebesar 1**. Paket ini ditemukan pada frame ke-4 dan dapat dikenali dari adanya perintah **"POST /ethereal-labs/lab3-1-reply.htm HTTP/1.1"** pada bagian payload. Selain itu, keberadaan flag **[PSH, ACK]** dan ukuran data sebesar **565 byte** menunjukkan bahwa paket tersebut berisi data aplikasi yang dikirim menuju server.
+4. Berdasarkan grafik **Round Trip Time (RTT)** yang ditampilkan Wireshark, enam segmen pertama menunjukkan nilai RTT yang berubah-ubah pada rentang sekitar **30 ms hingga 180 ms**. Nilai RTT diperoleh dari titik-titik awal pada grafik pengamatan. Variasi tersebut menunjukkan bahwa waktu tempuh paket di jaringan tidak selalu konstan karena dipengaruhi oleh kondisi lalu lintas jaringan. Sementara itu, nilai **Estimated RTT** dihitung menggunakan metode **Exponential Weighted Moving Average (EWMA)** dengan parameter α = 0,125 sehingga menghasilkan nilai yang lebih stabil dibandingkan RTT aktual.
 
-### 4.
-Berdasarkan grafik **Round Trip Time (RTT)** yang ditampilkan Wireshark, enam segmen pertama menunjukkan nilai RTT yang berubah-ubah pada rentang sekitar **30 ms hingga 180 ms**. Nilai RTT diperoleh dari titik-titik awal pada grafik pengamatan. Variasi tersebut menunjukkan bahwa waktu tempuh paket di jaringan tidak selalu konstan karena dipengaruhi oleh kondisi lalu lintas jaringan. Sementara itu, nilai **Estimated RTT** dihitung menggunakan metode **Exponential Weighted Moving Average (EWMA)** dengan parameter α = 0,125 sehingga menghasilkan nilai yang lebih stabil dibandingkan RTT aktual.
+5. Jika dijumlahkan, ukuran data dari enam segmen TCP pertama mencapai **7.865 byte**. Nilai tersebut diperoleh dari akumulasi panjang data yang dikirim pada keenam segmen awal selama proses transfer berlangsung.
 
-### 5.
-Jika dijumlahkan, ukuran data dari enam segmen TCP pertama mencapai **7.865 byte**. Nilai tersebut diperoleh dari akumulasi panjang data yang dikirim pada keenam segmen awal selama proses transfer berlangsung.
+6. Hasil pengamatan menunjukkan bahwa sisi penerima masih memiliki **ruang buffer sebesar 17.520 byte**. Kapasitas ini cukup untuk menampung data yang masuk tanpa menyebabkan hambatan pada proses komunikasi. Tidak ditemukan nilai **Window Size = 0**, sehingga dapat disimpulkan bahwa buffer penerima tidak pernah berada dalam kondisi penuh selama pengiriman data berlangsung.
 
-### 6.
-Hasil pengamatan menunjukkan bahwa sisi penerima masih memiliki **ruang buffer sebesar 17.520 byte**. Kapasitas ini cukup untuk menampung data yang masuk tanpa menyebabkan hambatan pada proses komunikasi. Tidak ditemukan nilai **Window Size = 0**, sehingga dapat disimpulkan bahwa buffer penerima tidak pernah berada dalam kondisi penuh selama pengiriman data berlangsung.
+7. Selama proses transfer berlangsung, tidak ditemukan adanya paket TCP yang mengalami **retransmission**. Kondisi ini mengindikasikan bahwa seluruh paket berhasil diterima dengan baik oleh penerima tanpa kehilangan data yang mengharuskan pengiriman ulang.
 
-### 7.
-Selama proses transfer berlangsung, tidak ditemukan adanya paket TCP yang mengalami **retransmission**. Kondisi ini mengindikasikan bahwa seluruh paket berhasil diterima dengan baik oleh penerima tanpa kehilangan data yang mengharuskan pengiriman ulang.
+8. Jumlah byte yang diakui oleh paket **ACK** tidak selalu memiliki nilai yang sama. Dalam mekanisme TCP, satu ACK dapat mengonfirmasi penerimaan beberapa segmen sekaligus, sehingga jumlah data yang diakui bergantung pada kondisi penerimaan paket dan strategi pengiriman yang digunakan.
 
-### 8.
-Jumlah byte yang diakui oleh paket **ACK** tidak selalu memiliki nilai yang sama. Dalam mekanisme TCP, satu ACK dapat mengonfirmasi penerimaan beberapa segmen sekaligus, sehingga jumlah data yang diakui bergantung pada kondisi penerimaan paket dan strategi pengiriman yang digunakan.
-
-### 9.
-Dari grafik throughput yang diamati, kecepatan transfer TCP cenderung stabil pada kisaran **200–250 kbps**. Jika dikonversi ke satuan byte, nilainya berada di sekitar **25–31 KB/s**. Nilai tersebut diperoleh dengan memperhatikan garis rata-rata throughput pada grafik dan kemudian mengubah satuan kilobit per detik menjadi kilobyte per detik melalui proses konversi.
+9. Dari grafik throughput yang diamati, kecepatan transfer TCP cenderung stabil pada kisaran **200–250 kbps**. Jika dikonversi ke satuan byte, nilainya berada di sekitar **25–31 KB/s**. Nilai tersebut diperoleh dengan memperhatikan garis rata-rata throughput pada grafik dan kemudian mengubah satuan kilobit per detik menjadi kilobyte per detik melalui proses konversi.
 
 ## 6.5 Congestion Control pada TCP
 
