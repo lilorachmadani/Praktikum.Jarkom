@@ -40,10 +40,10 @@ Sesudah seluruh data berhasil diterima, server mengirimkan pesan balasan berupa 
 ## Jawaban
 
 1. Berdasarkan hasil pengamatan pada Wireshark, perangkat klien yang digunakan dalam proses pengiriman file memiliki alamat IP **10.225.197.205**. Pada saat komunikasi berlangsung, koneksi TCP menggunakan nomor port sumber **56333** untuk berinteraksi dengan server tujuan.
-<img width="1267" height="672" alt="image" src="https://github.com/user-attachments/assets/b3b083b6-ffab-4f8e-91df-4b77b7381c2a" />
+<img width="1257" height="615" alt="image" src="https://github.com/user-attachments/assets/dae7d3b6-0c7e-44ff-96d1-3baceaa6f494" />
 
 2. Server **gaia.cs.umass.edu** teridentifikasi memiliki alamat IP **128.119.245.12**. Selama proses transfer file, server memanfaatkan **port 80** yang merupakan port standar untuk layanan HTTP dalam menerima maupun mengirimkan segmen TCP.
-<img width="1265" height="640" alt="image" src="https://github.com/user-attachments/assets/8eea2d55-4b64-428e-a05b-be6db1789c24" />
+<img width="1262" height="606" alt="image" src="https://github.com/user-attachments/assets/57b9705c-1ecf-4af5-b802-6a9896cf22f8" />
 
 3. Dari paket yang berhasil ditangkap, diketahui bahwa komputer klien menggunakan alamat IP **10.225.197.205** dengan nomor port **56333** sebagai identitas koneksi TCP. Kombinasi alamat IP dan port tersebut digunakan untuk melakukan komunikasi serta mengirimkan data ke server **gaia.cs.umass.edu**.
 <img width="223" height="96" alt="image" src="https://github.com/user-attachments/assets/33a77a56-b9d6-40fa-af24-cab08182ac42" />
