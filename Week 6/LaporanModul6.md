@@ -13,17 +13,20 @@ Pertama, akses alamat http://gaia.cs.umass.edu/wireshark-labs/alice.txt melalui 
 2. Membuka Halaman Upload
 
 Selanjutnya, buka halaman http://gaia.cs.umass.edu/wireshark-labs/TCP-wireshark-file1.html yang akan digunakan sebagai media pengunggahan file.
+<img width="1918" height="967" alt="image" src="https://github.com/user-attachments/assets/7e3d8c56-df8b-4920-a0eb-3acd43f9ca14" />
 
 3. Mengunggah File
 
 Pilih file alice.txt yang sebelumnya telah disimpan, kemudian lakukan proses upload melalui halaman yang tersedia. Setelah proses pengunggahan dimulai, tampilan halaman akan berubah seperti yang ditunjukkan pada gambar hasil percobaan.
+<img width="1918" height="970" alt="image" src="https://github.com/user-attachments/assets/c2498a01-65c4-40d5-b588-4c816d7d6bb9" />
 
 4. Menghentikan Proses Capture
 
 Setelah file berhasil diunggah, hentikan proses perekaman paket pada Wireshark dengan menekan tombol Stop Capture. Kemudian masukkan kata kunci tcp pada kolom filter untuk menampilkan paket-paket TCP yang telah direkam selama proses berlangsung.
-
+<img width="1235" height="44" alt="image" src="https://github.com/user-attachments/assets/82eaf70f-3e58-4d7f-8889-fdc36f244eb7" />
 
 Paket SYN digunakan sebagai langkah awal dalam pembentukan koneksi TCP antara perangkat client dan server. Paket ini merupakan bagian dari mekanisme three-way handshake yang bertujuan memastikan kedua perangkat siap untuk berkomunikasi. Pada tahap ini belum terjadi pengiriman file, karena proses yang berlangsung hanya berupa negosiasi dan pembentukan koneksi.Setelah koneksi berhasil dibuat, data file mulai dikirimkan melalui sejumlah segmen TCP. Pemecahan data menjadi beberapa segmen dilakukan agar proses transmisi lebih teratur, mudah dikontrol, serta memungkinkan pengiriman ulang apabila terdapat paket yang hilang selama perjalanan.
+<img width="1263" height="652" alt="image" src="https://github.com/user-attachments/assets/7d87987d-ca78-430f-ab0f-900c76dc9340" />
 
 Sesudah seluruh data berhasil diterima, server mengirimkan pesan balasan berupa HTTP/1.1 200 OK. Kode status tersebut menunjukkan bahwa permintaan yang dikirim oleh client telah diproses dengan sukses dan file yang diunggah telah diterima tanpa kendala oleh server.
 
@@ -37,8 +40,10 @@ Sesudah seluruh data berhasil diterima, server mengirimkan pesan balasan berupa 
 ## Jawaban
 
 1. Berdasarkan hasil pengamatan pada Wireshark, perangkat klien yang digunakan dalam proses pengiriman file memiliki alamat IP **10.225.197.205**. Pada saat komunikasi berlangsung, koneksi TCP menggunakan nomor port sumber **56333** untuk berinteraksi dengan server tujuan.
+<img width="1267" height="672" alt="image" src="https://github.com/user-attachments/assets/b3b083b6-ffab-4f8e-91df-4b77b7381c2a" />
 
 2. Server **gaia.cs.umass.edu** teridentifikasi memiliki alamat IP **128.119.245.12**. Selama proses transfer file, server memanfaatkan **port 80** yang merupakan port standar untuk layanan HTTP dalam menerima maupun mengirimkan segmen TCP.
+<img width="1265" height="640" alt="image" src="https://github.com/user-attachments/assets/8eea2d55-4b64-428e-a05b-be6db1789c24" />
 
 3. Dari paket yang berhasil ditangkap, diketahui bahwa komputer klien menggunakan alamat IP **10.225.197.205** dengan nomor port **56333** sebagai identitas koneksi TCP. Kombinasi alamat IP dan port tersebut digunakan untuk melakukan komunikasi serta mengirimkan data ke server **gaia.cs.umass.edu**.
 
