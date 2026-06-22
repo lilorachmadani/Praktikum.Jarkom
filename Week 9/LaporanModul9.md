@@ -55,7 +55,7 @@ while True:#biar server terus jalan
 ```
 3. Buat file HTML baru pada direktori yang sama dengan file Python.
 4. Masukkan kode HTML yang telah disediakan ke dalam file HTML tersebut.
-```
+```html
 <html>
 <head>
     <title>eak</title>
