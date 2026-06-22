@@ -182,4 +182,5 @@ print("[SYSTEM] Server ditutup.")  # menampilkan pesan bahwa server sudah berhen
 7. Jika pengguna mengirimkan perintah "exit", proses komunikasi akan dihentikan dan server maupun client akan menutup socket yang digunakan.
 
 ### Output
+<img width="1317" height="292" alt="image" src="https://github.com/user-attachments/assets/3bd44dfd-58d8-4fa7-9a8a-932030617708" />
 
