@@ -94,7 +94,7 @@ print("[SYSTEM] Server ditutup")  # menampilkan informasi bahwa server telah ber
 7. Apabila pengguna memasukkan perintah "exit", koneksi akan ditutup dan proses komunikasi antara client dan server akan dihentikan.
 
 ### Output
-![Uploading image.png…]()
+<img width="1302" height="227" alt="image" src="https://github.com/user-attachments/assets/402c2c38-b102-4497-b690-048fc9e9a273" />
 
 # Implementasi UDP
 
