@@ -5,7 +5,7 @@ Web server adalah perangkat lunak yang menerima permintaan dari browser dan meng
 ## Langkah-Langkah membuat web sederhana
 1. Buat sebuah file Python menggunakan VS Code.
 2. Salin dan tempel kode program server ke dalam file tersebut.
-```
+```python
 from socket import *#ambil semua fungsi dari library socket
 import threading#buat jalanin banyak client sekaligus
 
