@@ -184,3 +184,8 @@ print("[SYSTEM] Server ditutup.")  # menampilkan pesan bahwa server sudah berhen
 ### Output
 <img width="1317" height="292" alt="image" src="https://github.com/user-attachments/assets/3bd44dfd-58d8-4fa7-9a8a-932030617708" />
 
+# Perbedaan TCP dan UDP
+
+TCP dan UDP berbeda pada cara pengiriman datanya. TCP harus membuat koneksi terlebih dahulu dan menjamin data terkirim dengan lengkap serta berurutan, tetapi prosesnya lebih lambat. Sebaliknya, UDP dapat mengirim data tanpa koneksi sehingga lebih cepat, namun tidak menjamin data akan sampai atau diterima secara berurutan.
+
+Secara umum, TCP digunakan untuk aplikasi yang membutuhkan keandalan data, sedangkan UDP digunakan untuk aplikasi yang lebih mengutamakan kecepatan komunikasi.
