@@ -2,7 +2,7 @@
 
 Web server adalah perangkat lunak yang menerima permintaan dari browser dan mengirimkan halaman atau data yang diminta pengguna melalui protokol HTTP atau HTTPS. Fungsi utamanya adalah menyimpan, mengelola, dan menyediakan konten website, seperti halaman HTML, gambar, dan video. Contoh web server yang umum digunakan yaitu Apache, Nginx, dan Microsoft IIS.
 
-## Langkah-Langkah membuat web sederhana
+## Langkah-Langkah 
 1. Buat sebuah file Python menggunakan VS Code.
 2. Salin dan tempel kode program server ke dalam file tersebut.
 ```python
