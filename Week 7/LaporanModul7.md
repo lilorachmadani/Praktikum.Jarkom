@@ -1,11 +1,11 @@
-__________________________________________
+
 
 # Modul 7 - SOCKET PROGRAMMING
 
-## penjelasan socket
-Socket programming adalah metode komunikasi antar komputer dalam jaringan menggunakan socket sebagai penghubung. Terdapat dua peran utama, yaitu client yang mengirim data dan server yang menerima serta merespons data. Komunikasi dapat menggunakan protokol TCP yang andal atau UDP yang lebih cepat namun tanpa jaminan pengiriman. Dengan demikian, socket programming memungkinkan pertukaran data secara langsung antar perangkat dalam jaringan.
+## Penjelasan 
+Socket programming merupakan teknik yang digunakan untuk membangun komunikasi antara dua atau lebih perangkat dalam suatu jaringan komputer melalui media yang disebut socket. Dalam proses ini terdapat dua komponen utama, yaitu server yang bertugas menerima dan mengolah permintaan, serta client yang mengirimkan data atau permintaan kepada server. Komunikasi dapat dilakukan menggunakan protokol TCP yang menjamin keandalan pengiriman data maupun UDP yang menawarkan proses transfer lebih cepat dengan risiko kehilangan paket. Melalui socket programming, perangkat-perangkat dalam jaringan dapat saling bertukar informasi secara langsung dan real-time.
 
-# implementasi TCP
+# Implementasi TCP
 
 ## TCP Client
 ```python
@@ -84,14 +84,14 @@ serverSocket.close()  # menghentikan layanan server dan menutup socket
 print("[SYSTEM] Server ditutup")  # menampilkan informasi bahwa server telah berhenti
 ```
 
-## Alur TCP
-1. Server dijalankan terlebih dahulu
-2. Client melakukan koneksi ke server
-3. Client mengirim data
-4. Server memproses data
-5. Server mengirim hasil ke client
-6. Client menampilkan hasil
-7. Jika kita ketik exit kita akan keluar dan server berhenti
+## Alur Kerja TCP
+1. Server diaktifkan terlebih dahulu dan menunggu permintaan koneksi dari client.
+2. Client membangun koneksi dengan server melalui alamat dan port yang telah ditentukan.
+3. Setelah koneksi berhasil, client mengirimkan pesan atau data ke server.
+4. Server menerima kemudian mengolah data yang dikirim oleh client.
+5. Hasil pengolahan atau respons dari server dikirim kembali kepada client.
+6. Client menerima dan menampilkan respons tersebut kepada pengguna.
+7. Apabila pengguna memasukkan perintah "exit", koneksi akan ditutup dan proses komunikasi antara client dan server akan dihentikan.
 
 ### Output
 
@@ -171,14 +171,14 @@ serverSocket.close()  # menonaktifkan socket server
 print("[SYSTEM] Server ditutup.")  # menampilkan pesan bahwa server sudah berhenti
 ```
 
-## Alur UDP
-1. Server dijalankan
-2. Client langsung mengirim data tanpa koneksi
-3. Server menerima data
-4. Server memproses
-5. Server mengirim balasan
-6. Client menerima hasil
-7. Jika kita ketik exit kita akan keluar dan server berhenti
+## Alur Kerja UDP
+1. Server dijalankan dan berada dalam kondisi siap menerima data dari client.
+2. Client mengirimkan pesan langsung ke alamat dan port server tanpa perlu membuat koneksi terlebih dahulu.
+3. Server menerima paket data yang dikirim oleh client.
+4. Data yang diterima kemudian diproses sesuai dengan kebutuhan program.
+5. Setelah proses selesai, server mengirimkan respons kembali ke client.
+6. Client menerima balasan dari server dan menampilkannya kepada pengguna.
+7. Jika pengguna mengirimkan perintah "exit", proses komunikasi akan dihentikan dan server maupun client akan menutup socket yang digunakan.
 
 ### Output
 
