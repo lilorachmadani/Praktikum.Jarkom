@@ -9,76 +9,79 @@ Socket programming adalah metode komunikasi antar komputer dalam jaringan menggu
 
 ## TCP Client
 ```python
-from socket import * # import all libary
+from socket import *  # memanggil seluruh fungsi yang ada pada library socket
 
-serverName = "localhost" # alamat server
-serverPort = 12000 # membuat port untuk komunikasi
+serverName = "localhost"  # host tujuan yang akan dihubungi
+serverPort = 12000  # nomor port yang digunakan server
 
-clientSocket = socket(AF_INET, SOCK_STREAM) # membuat socket ipv4 dan TCP
-clientSocket.connect( # menghubungkan socket ke server
+clientSocket = socket(AF_INET, SOCK_STREAM)  # membuat socket berbasis IPv4 dan protokol TCP
+clientSocket.connect(
     (serverName, serverPort)
-)
+)  # melakukan koneksi ke server yang ditentukan
 
-print("[SYSTEM] Masukan pesan") # pesan yang akan dikirim ke server
+print("[SYSTEM] Masukan pesan")  # menampilkan instruksi kepada pengguna
 
-running = True # variabel untuk menjalankan program, jika false program akan berhenti
-while running: # loop agar program terus berjalan
-    message = input("> ") # input pesan yang akan dikirim ke server
+running = True  # penanda agar program tetap berjalan
+while running:  # perulangan utama client
+    message = input("> ")  # membaca pesan dari keyboard
     
-    # mengirim pesan ke server, encode untuk mengubah string menjadi byte
-    clientSocket.send(message.encode()) 
-    if message == "exit": # pesan "exit" untuk keluar dari program
+    # mengirim data ke server setelah diubah menjadi format byte
+    clientSocket.send(message.encode())
+
+    if message == "exit":  # jika pengguna mengetik exit
         print("[SYSTEM] keluar dari program")
-        running = False # ubah variabel running menjadi false untuk keluar dari loop
+        running = False  # menghentikan proses perulangan
         break
 
-    modifiedMessage = clientSocket.recv(2048) # menerima pesan dari server, 2048 adalah ukuran buffer
-    print("[SERVER] pesan : ", modifiedMessage.decode()) # decode untuk mengubah byte menjadi string
+    modifiedMessage = clientSocket.recv(2048)  # menerima balasan dari server dengan buffer 2048 byte
 
-clientSocket.close() # menutup socket
-print("[SYSTEM] socket ditutup")
+    # menampilkan pesan yang diterima setelah dikonversi kembali ke string
+    print("[SERVER] pesan : ", modifiedMessage.decode())
+
+clientSocket.close()  # mengakhiri koneksi socket
+print("[SYSTEM] socket ditutup")  # konfirmasi bahwa koneksi telah ditutup
 ```
 ## TCP server
 ```python
-from socket import *                         # import semua library socket
+from socket import *  # memuat seluruh fungsi yang tersedia pada modul socket
 
-serverPort = 12000                           # port yang digunakan server
+serverPort = 12000  # menentukan port yang akan dipakai server
 
-serverSocket = socket(AF_INET, SOCK_STREAM)  # membuat socket IPv4 dan TCP
-serverSocket.bind(("", serverPort))          # bind ke semua interface pada port 12000
-serverSocket.listen(1)                       # mulai mendengarkan koneksi (maks 1 antrean)
+serverSocket = socket(AF_INET, SOCK_STREAM)  # membuat endpoint komunikasi TCP berbasis IPv4
+serverSocket.bind(("", serverPort))  # mengaitkan socket dengan port yang telah ditentukan
+serverSocket.listen(1)  # mengaktifkan mode listening untuk menerima permintaan koneksi
 
-print(f"[SYSTEM] Server berjalan pada port {serverPort}")  # informasi server aktif
-print("[SYSTEM] Menunggu koneksi client...")               # menunggu client terhubung
+print(f"[SYSTEM] Server berjalan pada port {serverPort}")  # menampilkan status server
+print("[SYSTEM] Menunggu koneksi client...")  # memberi tahu bahwa server siap menerima koneksi
 
-connectionSocket, addr = serverSocket.accept()  # menerima koneksi dari client
+connectionSocket, addr = serverSocket.accept()  # menerima koneksi yang masuk dari client
 
-print(f"[CLIENT] Terhubung dari {addr}")        # menampilkan alamat client
+print(f"[CLIENT] Terhubung dari {addr}")  # menampilkan alamat client yang berhasil tersambung
 
-running = True                                  # variabel kontrol loop
+running = True  # flag untuk mengendalikan jalannya program
 
-while running:                                  # loop utama server
+while running:  # perulangan selama server masih aktif
 
-    message = connectionSocket.recv(2048).decode()  # menerima data lalu decode ke string
+    message = connectionSocket.recv(2048).decode()  # membaca data dari client dan mengubahnya menjadi teks
 
-    if not message:                             # jika koneksi ditutup client
-        break                                  # keluar dari loop
+    if not message:  # memeriksa apakah tidak ada data yang diterima
+        break  # menghentikan loop jika koneksi terputus
 
-    print("[CLIENT] pesan :", message)          # menampilkan pesan dari client
+    print("[CLIENT] pesan :", message)  # mencetak pesan yang dikirim client ke terminal
 
-    if message.lower() == "exit":               # jika client mengirim exit
-        print("[SYSTEM] Client keluar")         # informasi client keluar
-        running = False                         # hentikan loop
-        break                                  # keluar dari loop
+    if message.lower() == "exit":  # mengecek apakah client ingin mengakhiri sesi
+        print("[SYSTEM] Client keluar")  # notifikasi bahwa client telah keluar
+        running = False  # mengubah status agar loop berhenti
+        break
 
-    reply = f"Pesan diterima: {message}"        # membuat pesan balasan
+    reply = f"Pesan diterima: {message}"  # menyusun pesan balasan untuk client
 
-    connectionSocket.send(reply.encode())       # kirim balasan ke client
+    connectionSocket.send(reply.encode())  # mengirim respons ke client dalam format byte
 
-connectionSocket.close()                        # tutup koneksi client
-serverSocket.close()                            # tutup socket server
+connectionSocket.close()  # menutup koneksi dengan client
+serverSocket.close()  # menghentikan layanan server dan menutup socket
 
-print("[SYSTEM] Server ditutup")                # informasi server berhenti
+print("[SYSTEM] Server ditutup")  # menampilkan informasi bahwa server telah berhenti
 ```
 
 ## Alur TCP
@@ -96,76 +99,76 @@ print("[SYSTEM] Server ditutup")                # informasi server berhenti
 
 ## UDP Client
 ```python
-from socket import *                             # import semua library socket
+from socket import *  # memanggil seluruh fungsi dari modul socket
 
-serverName = 'localhost'                         # alamat server (localhost = komputer sendiri)
-serverPort = 12000                               # port tujuan server
+serverName = 'localhost'  # host server yang akan dihubungi
+serverPort = 12000  # nomor port tempat server berjalan
 
-clientSocket = socket(AF_INET, SOCK_DGRAM)       # membuat socket IPv4 dan UDP
+clientSocket = socket(AF_INET, SOCK_DGRAM)  # membuat socket UDP menggunakan IPv4
 
-print("[SYSTEM] Masukkan pesan (ketik 'exit' untuk keluar)\n")  # instruksi untuk pengguna
+print("[SYSTEM] Masukkan pesan (ketik 'exit' untuk keluar)\n")  # menampilkan petunjuk penggunaan
 
-while True:                                      # loop agar client terus berjalan
+while True:  # menjalankan program secara berulang hingga dihentikan
 
-    message = input("> ")                        # menerima input dari pengguna
+    message = input("> ")  # membaca pesan yang dimasukkan pengguna
 
-    if not message:                              # jika input kosong
-        continue                                 # kembali meminta input
+    if not message:  # memeriksa apakah input kosong
+        continue  # kembali ke awal perulangan tanpa mengirim data
 
-    clientSocket.sendto(                         # mengirim pesan ke server
-        message.encode(),                        # encode string menjadi byte
-        (serverName, serverPort)                 # alamat dan port tujuan
+    clientSocket.sendto(
+        message.encode(),  # mengubah teks menjadi format byte sebelum dikirim
+        (serverName, serverPort)  # menentukan alamat tujuan pengiriman
     )
 
-    if message.lower() == 'exit':                # jika pengguna mengetik exit
-        print("[SYSTEM] Keluar dari program.")   # tampilkan pesan keluar
-        break                                    # keluar dari loop
+    if message.lower() == 'exit':  # mengecek perintah untuk mengakhiri program
+        print("[SYSTEM] Keluar dari program.")  # notifikasi bahwa client akan berhenti
+        break  # keluar dari loop utama
 
-    balasan, _ = clientSocket.recvfrom(2048)     # menerima balasan dari server
-                                                 # 2048 = ukuran buffer maksimum
+    balasan, _ = clientSocket.recvfrom(2048)  # menerima paket data dari server
+                                              # kapasitas maksimum data yang diterima adalah 2048 byte
 
-    print(f"[SERVER] pesan: {balasan.decode()}\n")  # decode byte menjadi string lalu tampilkan
+    print(f"[SERVER] pesan: {balasan.decode()}\n")  # menampilkan isi balasan dari server
 
-clientSocket.close()                             # menutup socket client
+clientSocket.close()  # melepaskan resource socket yang digunakan
 
-print("[SYSTEM] Socket ditutup.")                # konfirmasi socket telah ditutup
+print("[SYSTEM] Socket ditutup.")  # informasi bahwa koneksi client telah berakhir
 ```
 ## UDP Server
 ```python
-from socket import *                            # import semua library socket
+from socket import *  # mengimpor seluruh fungsi yang tersedia pada modul socket
 
-serverPort = 12000                              # port yang digunakan server
+serverPort = 12000  # menentukan port yang akan digunakan untuk menerima koneksi
 
-serverSocket = socket(AF_INET, SOCK_DGRAM)      # membuat socket IPv4 dan UDP
-serverSocket.bind(("", serverPort))             # bind ke port 12000
+serverSocket = socket(AF_INET, SOCK_DGRAM)  # membuat socket UDP berbasis IPv4
+serverSocket.bind(("", serverPort))  # menghubungkan socket ke port yang telah ditentukan
 
-print(f"[SYSTEM] Server UDP berjalan di port {serverPort}")
-print("[SYSTEM] Menunggu pesan dari client...\n")
+print(f"[SYSTEM] Server UDP berjalan di port {serverPort}")  # menampilkan status server
+print("[SYSTEM] Menunggu pesan dari client...\n")  # memberi informasi bahwa server siap menerima data
 
-running = True                                  # variabel kontrol loop
+running = True  # penanda apakah server masih aktif
 
-while running:                                  # loop utama server
+while running:  # menjalankan server secara terus-menerus
 
-    message, clientAddress = serverSocket.recvfrom(2048)  # menerima data dan alamat client
-    message = message.decode()                  # ubah byte menjadi string
+    message, clientAddress = serverSocket.recvfrom(2048)  # menerima paket data beserta alamat pengirim
+    message = message.decode()  # mengubah data byte menjadi teks yang dapat dibaca
 
-    print(f"[CLIENT {clientAddress}] pesan: {message}")
+    print(f"[CLIENT {clientAddress}] pesan: {message}")  # menampilkan isi pesan dan alamat pengirim
 
-    if message.lower() == "exit":               # jika client mengirim exit
-        print("[SYSTEM] Client keluar.")
-        running = False                         # hentikan server
+    if message.lower() == "exit":  # memeriksa apakah client mengirim perintah keluar
+        print("[SYSTEM] Client keluar.")  # menampilkan notifikasi penghentian koneksi
+        running = False  # mengubah status agar perulangan berhenti
         break
 
-    balasan = f"Pesan diterima: {message}"      # membuat pesan balasan
+    balasan = f"Pesan diterima: {message}"  # menyiapkan respons untuk dikirim kembali
 
-    serverSocket.sendto(                        # kirim balasan ke client
-        balasan.encode(),
-        clientAddress
+    serverSocket.sendto(
+        balasan.encode(),  # mengubah teks balasan menjadi byte
+        clientAddress  # mengirim balasan ke alamat client yang sesuai
     )
 
-serverSocket.close()                            # menutup socket server
+serverSocket.close()  # menonaktifkan socket server
 
-print("[SYSTEM] Server ditutup.")
+print("[SYSTEM] Server ditutup.")  # menampilkan pesan bahwa server sudah berhenti
 ```
 
 ## Alur UDP
@@ -178,4 +181,4 @@ print("[SYSTEM] Server ditutup.")
 7. Jika kita ketik exit kita akan keluar dan server berhenti
 
 ### Output
-![terminal](asset/image1.png)
+
