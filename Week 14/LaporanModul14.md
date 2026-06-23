@@ -86,7 +86,7 @@ Pada **Frame 2162**, klien kembali mengirim **Association Request**, tetapi ke A
 Hasil pengamatan menunjukkan bahwa perangkat klien melakukan proses asosiasi ke beberapa Access Point sebelum menentukan jaringan yang akan digunakan. Perbedaan utama kedua paket terletak pada SSID dan Access Point tujuan yang menunjukkan adanya perpindahan atau pemilihan jaringan Wi-Fi oleh klien.
 
 ## Analisis Association Response
-![Uploading image.png…]()
+<img width="1918" height="1013" alt="image" src="https://github.com/user-attachments/assets/be7344e1-66dc-4bb6-89f5-9bb6bce0a329" />
 
 Untuk melihat tanggapan dari Access Point, digunakan filter **`wlan.fc.type_subtype == 1`**. Hasil capture menampilkan paket **Association Response** yang dikirim oleh **CiscoLinksys_f7:1d:51** kepada perangkat **Intel_d1:b6:4f**.
 
