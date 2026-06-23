@@ -72,7 +72,9 @@ ICMP bekerja bersama IP dengan membawa pesan kontrol dan informasi kesalahan dal
   2. ICMP Time Exceeded (TTL Expired) : pesan yang dikirim oleh router ketika nilai TTL pada suatu paket habis sebelum paket mencapai tujuan
 - Format dan Isi Pesan ICMP
   1. ICMP Echo Request
+     
      <img width="726" height="226" alt="image" src="https://github.com/user-attachments/assets/0131eb7b-d0e1-4dab-938f-f96067ec4b48" />
+     
      - Type = 8 -> menunjukkan paket merupakan Echo Request atau permintaan ping
      - Code = 0 -> tidak terdapat informasi tambahan/error pada paket
      - Checksum = 0xf7e5 [correct] -> checksum valid sehingga paket tidak mengalami kerusakan saat transmisi
