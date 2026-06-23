@@ -6,7 +6,7 @@ Merupakan perintah yang digunakan untuk mencari informasi DNS dari suatu domain.
 ### nslookup www.mit.edu
 Digunakan untuk mencari alamat IP dari website MIT. Ketik nslookup www.mit.edu di Command Prompt
 
-<img width="1920" height="1080" alt="Screenshot (71)" src="https://github.com/user-attachments/assets/2e6e732a-4b64-4509-bf21-4bc2431ac5d6" />
+<img width="262" height="150" alt="image" src="https://github.com/user-attachments/assets/17ef9391-4f0d-4882-bcee-cf5e74d8c842" />
 
 Ketika perintah dijalankan, DNS lokal kita yaitu tusbind.ac.id dengan alamat IP 10.217.7.77 yang menjawab. Hasilnya menunjukkan bahwa www.mit.edu sebenarnya diarahkan dulu ke nama lain yaitu e9566.dscb.akamaiedge.net, lalu baru mendapat alamat IP aslinya yaitu 23.217.163.122. Ada juga dua alamat IPv6 yang diberikan. Jawaban ini bersifat "Non-authoritative" artinya bukan langsung dari server resmi MIT, melainkan dari cache DNS lokal.
 
