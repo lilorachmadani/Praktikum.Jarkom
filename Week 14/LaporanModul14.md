@@ -55,3 +55,8 @@ Pada **Frame 3**, paket yang dipilih merupakan **Beacon Frame** yang dikirim ole
 * **Vendor Specific** berisi informasi tambahan dari vendor perangkat dan dukungan fitur Wi-Fi.
 
 Dari hasil analisis dapat disimpulkan bahwa Beacon Frame digunakan oleh access point untuk menyiarkan informasi jaringan secara berkala sehingga perangkat di sekitarnya dapat mendeteksi dan terhubung ke jaringan Wi-Fi tersebut.
+
+## Analisis Data Transfer
+<img width="1918" height="1023" alt="image" src="https://github.com/user-attachments/assets/9a3c0b1e-08f3-419c-b96c-9b07df6da983" />
+
+Berdasarkan hasil capture Wireshark dengan filter **`ip.addr == 128.119.245.12`**, terlihat komunikasi antara host **192.168.1.109** dan server **128.119.245.12**. Sebelum data dikirim, terjadi proses pembentukan koneksi TCP melalui tahapan **SYN, SYN-ACK, dan ACK**.Setelah koneksi berhasil dibuat, pada **Frame 480** terlihat paket **HTTP GET /wireshark-labs/alice.txt HTTP/1.1** yang dikirim dari klien ke server. Permintaan tersebut digunakan untuk meminta file **alice.txt** dari server.Server kemudian merespons permintaan tersebut melalui beberapa segmen TCP yang terlihat pada frame berikutnya. Pada detail paket juga terlihat bahwa komunikasi menggunakan **IPv4** dengan **port sumber 2538** dan **port tujuan 80 (HTTP)**.Dari hasil pengamatan dapat disimpulkan bahwa klien berhasil membangun koneksi TCP dengan server dan mengirim permintaan HTTP untuk mengakses file **alice.txt**, kemudian server mengirimkan data yang diminta kepada klien.
