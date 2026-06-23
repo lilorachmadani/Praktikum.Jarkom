@@ -58,6 +58,6 @@ IPv6 (Internet Protocol Version 6) adalah versi terbaru dari protokol IP yang di
 3. Perhatikan paket-paket IPv6 yang ditampilkan.
 <img width="1918" height="1006" alt="image" src="https://github.com/user-attachments/assets/30eb0f09-30de-4992-8678-c410db87d966" />
 
-Analisis Hasil
+## Analisis Hasil
 
 Berdasarkan hasil capture, terlihat komunikasi menggunakan IPv6 dari alamat 2001:db8:1::10 menuju 2a00:1450:4009:80b::200e. Paket yang diamati menggunakan protokol TCP dan TLS/SSL pada port 443 (HTTPS). Terdapat beberapa keterangan TCP Retransmission, yang menunjukkan adanya pengiriman ulang paket selama proses komunikasi. Selain itu, muncul informasi Previous segment not captured, yang menandakan ada paket yang tidak berhasil direkam saat capture berlangsung. Dari hasil tersebut dapat disimpulkan bahwa komunikasi data berjalan menggunakan IPv6 dan terhubung ke layanan HTTPS yang aman, meskipun terjadi beberapa retransmisi paket selama proses pengiriman data.
