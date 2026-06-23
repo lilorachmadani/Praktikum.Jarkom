@@ -60,3 +60,38 @@ Dari hasil analisis dapat disimpulkan bahwa Beacon Frame digunakan oleh access p
 <img width="1918" height="1023" alt="image" src="https://github.com/user-attachments/assets/9a3c0b1e-08f3-419c-b96c-9b07df6da983" />
 
 Berdasarkan hasil capture Wireshark dengan filter **`ip.addr == 128.119.245.12`**, terlihat komunikasi antara host **192.168.1.109** dan server **128.119.245.12**. Sebelum data dikirim, terjadi proses pembentukan koneksi TCP melalui tahapan **SYN, SYN-ACK, dan ACK**.Setelah koneksi berhasil dibuat, pada **Frame 480** terlihat paket **HTTP GET /wireshark-labs/alice.txt HTTP/1.1** yang dikirim dari klien ke server. Permintaan tersebut digunakan untuk meminta file **alice.txt** dari server.Server kemudian merespons permintaan tersebut melalui beberapa segmen TCP yang terlihat pada frame berikutnya. Pada detail paket juga terlihat bahwa komunikasi menggunakan **IPv4** dengan **port sumber 2538** dan **port tujuan 80 (HTTP)**.Dari hasil pengamatan dapat disimpulkan bahwa klien berhasil membangun koneksi TCP dengan server dan mengirim permintaan HTTP untuk mengakses file **alice.txt**, kemudian server mengirimkan data yang diminta kepada klien.
+
+## Analisis Proses Association & Disassociation
+
+- **Association (Asosiasi)** merupakan proses saat perangkat klien melakukan koneksi ke Access Point (AP) agar dapat bergabung ke jaringan Wi-Fi. Pada tahap ini, klien mengirimkan permintaan koneksi dan Access Point memberikan respons untuk mengizinkan atau menolak koneksi tersebut. Jika berhasil, perangkat dapat mulai bertukar data melalui jaringan nirkabel.
+
+- **Disassociation (Disasosiasi)** adalah proses pemutusan koneksi antara klien dan Access Point. Proses ini dapat terjadi karena pengguna memutus koneksi secara manual, perangkat berpindah ke Access Point lain, atau karena kondisi jaringan seperti sinyal yang lemah dan gangguan koneksi.
+
+- Pada praktikum ini, proses Association dan Disassociation diamati menggunakan Wireshark dengan menerapkan filter yang sesuai. Dari paket yang ditampilkan, dapat terlihat proses pertukaran pesan antara klien dan Access Point saat membangun maupun mengakhiri koneksi. Hasil pengamatan menunjukkan bahwa proses ini berperan penting dalam pengelolaan koneksi perangkat pada jaringan Wi-Fi sebelum komunikasi data dapat dilakukan.
+
+## Analisis Association Request
+
+### Expand Packet Awal
+<img width="1918" height="1022" alt="image" src="https://github.com/user-attachments/assets/de6e5415-5fcb-4bdb-b0e0-10b778cd03ff" />
+
+Pada **Frame 1750**, perangkat **Intel_d1:b6:4f** mengirim paket **Association Request** ke Access Point **CiscoLinksys_f5:ba:bb** dengan SSID **"linksys_SES_24086"**. Paket ini menandakan bahwa klien sedang mengajukan permintaan untuk bergabung ke jaringan Wi-Fi tersebut. Pada bagian parameter paket juga terlihat informasi mengenai kecepatan transmisi yang didukung serta konfigurasi keamanan jaringan berbasis WPA.
+
+### Expand Packet Akhir
+<img width="1915" height="1013" alt="image" src="https://github.com/user-attachments/assets/8982eb59-14a1-4e5a-b070-47e30d4571d9" />
+
+Pada **Frame 2162**, klien kembali mengirim **Association Request**, tetapi ke Access Point yang berbeda yaitu **CiscoLinksys_f7:1d:51** dengan SSID **"30 Munroe St"**. Paket ini berisi informasi tambahan seperti **QoS Capability** dan **Extended Supported Rates**, yang menunjukkan fitur dan kecepatan komunikasi yang dapat digunakan pada jaringan tersebut.
+
+### Kesimpulan
+
+Hasil pengamatan menunjukkan bahwa perangkat klien melakukan proses asosiasi ke beberapa Access Point sebelum menentukan jaringan yang akan digunakan. Perbedaan utama kedua paket terletak pada SSID dan Access Point tujuan yang menunjukkan adanya perpindahan atau pemilihan jaringan Wi-Fi oleh klien.
+
+## Analisis Association Response
+![Uploading image.png…]()
+
+Untuk melihat tanggapan dari Access Point, digunakan filter **`wlan.fc.type_subtype == 1`**. Hasil capture menampilkan paket **Association Response** yang dikirim oleh **CiscoLinksys_f7:1d:51** kepada perangkat **Intel_d1:b6:4f**.
+
+Paket ini menunjukkan bahwa permintaan asosiasi dari klien telah diterima. Selain itu, Access Point mengirimkan informasi terkait kemampuan jaringan seperti **Supported Rates**, **Extended Supported Rates**, dan **EDCA Parameter Set** yang akan digunakan selama komunikasi berlangsung.
+
+### Kesimpulan
+
+Berdasarkan paket Association Response yang diterima, dapat diketahui bahwa proses asosiasi berhasil dilakukan. Setelah tahap ini selesai, perangkat klien telah terdaftar pada Access Point dan dapat mulai bertukar data melalui jaringan Wi-Fi.
