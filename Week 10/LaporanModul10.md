@@ -46,3 +46,18 @@ Berdasarkan hasil pengujian, perintah ping google.com -l 2000 mengirim paket ICM
 Hasil capture Wireshark menunjukkan adanya paket "Fragmented IP protocol", yang menandakan bahwa paket ICMP mengalami fragmentasi karena ukurannya melebihi batas MTU jaringan. Paket dikirim dari 192.168.0.112 menuju 216.239.38.120 dengan ukuran 1514 bytes dan nilai TTL 128.
 
 Dari hasil tersebut dapat disimpulkan bahwa paket ping berukuran besar menyebabkan terjadinya fragmentasi pada lapisan IP. Namun, karena tidak ada balasan dari server tujuan, seluruh paket berakhir dengan Request Timed Out.
+
+# IPv6
+
+IPv6 (Internet Protocol Version 6) adalah versi terbaru dari protokol IP yang digunakan untuk memberikan alamat pada perangkat di jaringan. IPv6 dibuat untuk menggantikan IPv4 karena mampu menyediakan jumlah alamat yang jauh lebih banyak dan mendukung komunikasi jaringan yang lebih efisien.
+
+## Langkah-Langkah
+1. Buka file ipv6_sample.pcap di Wireshark.
+   <img width="772" height="47" alt="image" src="https://github.com/user-attachments/assets/0f52298f-413b-43fc-953b-71ab1c109bcc" />
+2. Masukkan filter ipv6 pada kolom pencarian.
+3. Perhatikan paket-paket IPv6 yang ditampilkan.
+<img width="1918" height="1006" alt="image" src="https://github.com/user-attachments/assets/30eb0f09-30de-4992-8678-c410db87d966" />
+
+Analisis Hasil
+
+Berdasarkan hasil capture, terlihat komunikasi menggunakan IPv6 dari alamat 2001:db8:1::10 menuju 2a00:1450:4009:80b::200e. Paket yang diamati menggunakan protokol TCP dan TLS/SSL pada port 443 (HTTPS). Terdapat beberapa keterangan TCP Retransmission, yang menunjukkan adanya pengiriman ulang paket selama proses komunikasi. Selain itu, muncul informasi Previous segment not captured, yang menandakan ada paket yang tidak berhasil direkam saat capture berlangsung. Dari hasil tersebut dapat disimpulkan bahwa komunikasi data berjalan menggunakan IPv6 dan terhubung ke layanan HTTPS yang aman, meskipun terjadi beberapa retransmisi paket selama proses pengiriman data.
