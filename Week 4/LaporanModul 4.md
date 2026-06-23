@@ -13,14 +13,14 @@ Ketika perintah dijalankan, DNS lokal kita yaitu tusbind.ac.id dengan alamat IP 
 ### nslookup -type=NS mit.edu
 Digunakan untuk mencari nameserver (server DNS resmi) dari domain mit.edu. Nameserver adalah server yang paling tahu tentang semua informasi domain tersebut. Sama seperti tadi, ketik nslookup -type=NS mit.edu di Command Prompt
 
-<img width="1920" height="1080" alt="Screenshot (72)" src="https://github.com/user-attachments/assets/85a2473a-1001-44b2-aebb-46aba8430a3d" />
+<img width="430" height="337" alt="image" src="https://github.com/user-attachments/assets/f4682e80-d562-4c4a-8a60-ec11bcefbd5f" />
 
 DNS lokal tusbind.ac.id (10.217.7.77) merespons permintaan dengan memberikan 8 nameserver resmi milik MIT. Semua nameserver tersebut dikelola oleh Akamai, yaitu perusahaan penyedia layanan CDN (Content Delivery Network) yang besar. Selain itu, DNS juga memberikan alamat IP dari masing-masing nameserver tersebut. "Non-authoritative" karena diambil dari cache DNS lokal.
 
 ### nslookup www.aiit.or.kr bitsy.mit.edu
 Meminta informasi IP dari www.aiit.or.kr langsung ke server bitsy.mit.edu (salah satu nameserver MIT). Tujuannya untuk membuktikan bahwa kita bisa bertanya ke server DNS tertentu, bukan hanya ke DNS lokal. Ketik nslookup www.aiit.or.kr bitsy.mit.edu di Command Prompt.
 
-<img width="1920" height="456" alt="Screenshot (73)" src="https://github.com/user-attachments/assets/8a8a0ac6-84bd-4c0b-8342-227efa1f1a5d" />
+<img width="237" height="198" alt="image" src="https://github.com/user-attachments/assets/cee85154-3383-40af-8354-19fa0cbf6ecc" />
 
 Percobaan pertama menampilkan pesan "Can't find server address for 'bitsy.mit.edu'", yang berarti nslookup tidak bisa menemukan alamat IP untuk bitsy.mit.edu. Namun, pencarian tetap dilanjutkan melalui DNS lokal dan akhirnya berhasil mendapatkan alamat IP dari www.aiit.or.kr. Pada percobaan kedua muncul pesan "DNS request timed out", yang berarti server bitsy.mit.edu tidak aktif atau tidak merespons permintaan. 
 
@@ -42,14 +42,14 @@ Merupakan  perintah bawaan Windows untuk melihat konfigurasi jaringan komputer, 
 ### ipconfig /all
 Ketik ipconfig /all di Command Prompt.
 
-<img width="1920" height="1080" alt="Screenshot (74)" src="https://github.com/user-attachments/assets/c938b38e-5560-47a8-ad11-18e89e403757" />
+<img width="592" height="426" alt="image" src="https://github.com/user-attachments/assets/5679a384-87bb-4813-a77b-3187d0833cb5" />
 
 Digunakan untuk menampilkan semua informasi jaringan pada komputer. Dari hasilnya terlihat beberapa adapter jaringan yang terpasang. Pada praktikum ini, informasi yang paling penting adalah DNS Server lokal yang digunakan, yaitu tusbind.ac.id dengan IP 10.217.7.77, karena informasi tersebut akan dibandingkan dengan tujuan paket DNS yang tertangkap di Wireshark.
 
 ### ipconfig /displaydns
 Ketik ipconfig /displaydns di Command Prompt.
 
-<img width="1920" height="1080" alt="Screenshot (75)" src="https://github.com/user-attachments/assets/7c774504-9c55-4ae8-9a88-7e1a973b8e92" />
+<img width="392" height="442" alt="image" src="https://github.com/user-attachments/assets/1dcc70bc-d783-4f13-bdc7-f0d45a3c889d" />
 
 Digunakan untuk menampilkan cache DNS yang tersimpan di komputer. Cache DNS adalah catatan dari hasil pencarian DNS sebelumnya, sehingga jika kita membuka domain yang sama lagi, komputer tidak perlu meminta alamat IP ke server DNS lagi.
 
@@ -58,22 +58,21 @@ Digunakan untuk menampilkan cache DNS yang tersimpan di komputer. Cache DNS adal
 
 ### Memfilter IP
 Pertama, buka Wireshark dan pasang filter IP agar hanya menampilkan paket yang berasal dari atau menuju komputer. Lihat ip config pada ipconfig /all di IPv4 Address.
-
-<img width="1920" height="1080" alt="Screenshot (76)" src="https://github.com/user-attachments/assets/442c857c-71db-4c01-bdaf-df233ae283ca" />
+<img width="942" height="450" alt="image" src="https://github.com/user-attachments/assets/e4b2274a-c6f3-48c8-bba6-cec2fe01d354" />
 
 Terdapat berbagai jenis paket tertangkap seperti UDP, TLS, TCP, dan QUIC. Ini adalah traffic normal yang berjalan di komputer.
 
 ### Membuka www.ietf.org
 Setelah Wireshark berjalan, buka browser dan ketik http://www.ietf.org
 
-<img width="1920" height="1080" alt="Screenshot (77)" src="https://github.com/user-attachments/assets/e10373fe-aeff-4b2e-8ebd-6d5c2aa581a0" />
+<img width="942" height="437" alt="image" src="https://github.com/user-attachments/assets/e363bba8-d9b1-4e94-9e1c-4429b901c15e" />
 
 Di balik ini, browser mengirim DNS query untuk mencari tahu IP dari www.ietf.org sebelum bisa terhubung ke server.
 
 ### Menganalisis Paket DNS di Wireshark
 Untuk melihat khusus paket DNS yang berhubungan dengan ietf.org, gunakan filter: ip.addr == 10.218.15.227 && dns.qry.name contains "ietf", ketik di wireshark
 
-<img width="1920" height="1080" alt="Screenshot (81)" src="https://github.com/user-attachments/assets/a8613457-6fa0-4fe4-a9d6-b0ec779e9b7b" />
+<img width="940" height="485" alt="image" src="https://github.com/user-attachments/assets/70e4fc2d-e513-4130-97fc-9b16b7c83d94" />
 
 Terlihat 4 paket DNS, terdiri dari 2 query dan 2 response untuk domain www.ietf.org.
 
@@ -96,7 +95,7 @@ mengakses suatu gambar? Tidak selalu. Jika gambar berasal dari domain yang sama 
 ### Menganalisis Paket DNS nslookup mit.edu di Wireshark
 Untuk melihat paket DNS hasil nslookup mit.edu, gunakan filter: ip.addr == 10.218.15.227 && dns.qry.name contains "mit"
 
-<img width="1920" height="1080" alt="Screenshot (82)" src="https://github.com/user-attachments/assets/46703786-6675-417a-8e0b-c6a00785248c" />
+<img width="947" height="477" alt="image" src="https://github.com/user-attachments/assets/44bcea85-0d8e-4bf6-bdbc-6805a133123d" />
 
 Terlihat paket DNS query dan response untuk domain mit.edu yang dikirim ke DNS lokal 10.217.7.77.
 
@@ -108,11 +107,10 @@ Terlihat paket DNS query dan response untuk domain mit.edu yang dikirim ke DNS l
 
 ### Memfilter DNS untuk nslookup -type=NS mit.edu di Wireshark
 Setelah membuka wireshark dan memilih jaringan wifi, buka CMD dan ketik perintah nslookup -type=NS mit.edu di Command Prompt
-<img width="1920" height="1080" alt="Screenshot (71)" src="https://github.com/user-attachments/assets/44679a80-b428-41b8-aa30-9d8fc65f7659" />
+<img width="263" height="145" alt="image" src="https://github.com/user-attachments/assets/3db7f912-bc0d-4bc1-ae13-812a1c79acb3" />
 
 Setelah mematikan wireshark, gunakan filter dns untuk mengambil data dari Standard query (request) dan Standard query response dari NS mit.edu
-
-<img width="1920" height="1080" alt="Screenshot (97)" src="https://github.com/user-attachments/assets/c4feac0e-68de-4bc3-8814-2827c99f5bd6" />
+<img width="951" height="482" alt="image" src="https://github.com/user-attachments/assets/87c73a5a-fcf7-4e0f-9cb9-1fb94881ca6b" />
 
 #### Pertanyaan
 - Ke alamat IP manakah pesan permintaan DNS dikirimkan? Apakah alamat IP tersebut 
@@ -120,7 +118,7 @@ merupakan default alamat IP server DNS lokal Anda? Permintaan DNS dikirim ke ala
 - Periksa pesan permintaan DNS. Apa ”jenis” atau ”type” dari pesan tersebut? Apakah pesan 
 tersebut mengandung ”jawaban” atau ”answers”?
 
-<img width="931" height="285" alt="Screenshot (98) copy" src="https://github.com/user-attachments/assets/5ff75a6e-cc78-496d-8a78-d6ca293fd00e" />
+<img width="396" height="236" alt="image" src="https://github.com/user-attachments/assets/b72b5bd0-685f-4bc8-ab17-6c0ddaf67e2b" />
 
 Dari situ terlihat bahwa:
 Type = NS
@@ -138,12 +136,11 @@ Pesan balasan juga memberikan alamat IP untuk server tersebut, contohnya:
 
 ### Menganalisis DNS Menggunakan Server www.aiit.or.kr bitsy.mit.edu
 Setelah membuka wireshark dan memilih jaringan wifi, buka CMD dan ketik perintah nslookup www.aiit.or.kr bitsy.mit.edu di Command Prompt
-
-<img width="1920" height="456" alt="Screenshot (73)" src="https://github.com/user-attachments/assets/2ad0d8e3-8f7b-4c0c-be39-89ace8e64a9b" />
+<img width="226" height="202" alt="image" src="https://github.com/user-attachments/assets/0535fd8a-d358-474d-ad53-8f6d255528c3" />
 
 Setelah mematikan wireshark, gunakan filter dns untuk mengambil data dari Standard query (request) dari www.aiit.or.kr
 
-<img width="1920" height="1080" alt="Screenshot (99)" src="https://github.com/user-attachments/assets/160528da-c5c8-4d78-aeec-0742faf93fb3" />
+<img width="947" height="478" alt="image" src="https://github.com/user-attachments/assets/b9e96ace-ff2d-4369-91ff-cacbc6e8fc03" />
 
 #### Pertanyaan
 - Ke alamat IP manakah pesan permintaan DNS dikirimkan? Apakah alamat IP tersebut 
@@ -158,6 +155,6 @@ Di bagian Queries terlihat www.aiit.or.kr: type A, class IN artinya merupakan Ty
 - Periksa pesan balasan DNS. Berapa banyak ”jawaban” atau “answers” yang terdapat di 
 dalamnya. Apa saja isi yang terkandung dalam setiap jawaban tersebut? 
 
-<img width="1920" height="456" alt="Screenshot (73)" src="https://github.com/user-attachments/assets/18e909ed-2fc9-418f-b2be-0dcd21f39317" />
+<img width="235" height="202" alt="image" src="https://github.com/user-attachments/assets/7eed340d-f108-4d06-b316-fa24f285f239" />
 
 Pada percobaan ini tidak terdapat jawaban (answers) karena server DNS tidak memberikan balasan dan terjadi DNS request timed out. Oleh karena itu informasi mengenai alamat IP atau server domain tidak dapat diperoleh dari query tersebut.
