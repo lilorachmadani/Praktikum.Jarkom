@@ -53,7 +53,7 @@ IPv6 (Internet Protocol Version 6) adalah versi terbaru dari protokol IP yang di
 
 ## Langkah-Langkah
 1. Buka file ipv6_sample.pcap di Wireshark.
-   <img width="772" height="47" alt="image" src="https://github.com/user-attachments/assets/0f52298f-413b-43fc-953b-71ab1c109bcc" />
+   <img width="163" height="26" alt="image" src="https://github.com/user-attachments/assets/be167c35-3d7d-4ad9-bc5e-d5df9101638e" />
 2. Masukkan filter ipv6 pada kolom pencarian.
 3. Perhatikan paket-paket IPv6 yang ditampilkan.
 <img width="1918" height="1006" alt="image" src="https://github.com/user-attachments/assets/30eb0f09-30de-4992-8678-c410db87d966" />
